@@ -28,7 +28,7 @@ public class QueueController {
     @RequestMapping("/send")
     public void send() {
         String message = "新发送的第 %s 条消息!";
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             jmsMessagingTemplate.convertAndSend(queue, String.format(message, i));
         }
     }
