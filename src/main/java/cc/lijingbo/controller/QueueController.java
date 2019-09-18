@@ -8,15 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.jms.Queue;
 
-/**
- * 北京中油瑞飞信息技术有限责任公司 研究院
- *
- * @author : lijingbo
- * @类:QueueController
- * @描述:
- * @版本信息：
- * @date : 2019-09-15 16:01
- */
+
 @RestController
 public class QueueController {
     @Autowired
