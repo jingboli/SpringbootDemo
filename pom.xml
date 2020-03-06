@@ -25,6 +25,7 @@
         <module>springbootmail</module>
         <module>springbootredis</module>
         <module>springbootactivemq</module>
+        <module>springbootheader</module>
     </modules>
     <dependencies>
         <dependency>
@@ -47,6 +48,12 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version>
         </dependency>
     </dependencies>
 
