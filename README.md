@@ -1,4 +1,4 @@
-# Springboot 集成其他框架
-* [Springboot 集成 Redis](README-REDIS.md)
-* [Springboot 集成 ActiveMQ](README-ACTIVEMQ.md)
-* [Springboot 集成 Mail](README-MAIL.md)
+# Springboot 知识点
+* [Springboot 集成 Redis](./springbootredis/README-REDIS.md)
+* [Springboot 集成 ActiveMQ](./springbootactivemq/README-ACTIVEMQ.md)
+* [Springboot 集成 Mail](./springbootmail/README-MAIL.md)
