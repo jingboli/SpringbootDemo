@@ -40,10 +40,55 @@
 ##### 方法三
 * 自定义注解 + 自定义参数解析器 + 注册解析器 
     1. 定义注解：`RequestBodyAndHeader`
+        ```java
+        @Target(ElementType.PARAMETER)
+        @Retention(RetentionPolicy.RUNTIME)
+        @Documented
+        public @interface RequestBodyAndHeader {
+            boolean required() default true;
+        }
+        ```
     2. 定义注解解析器 `RequestBodyAndHeaderResolver`，继承 `RequestResponseBodyMethodProcessor`
+        ```java
+        @Component
+        public class RequestBodyAndHeaderResolver extends RequestResponseBodyMethodProcessor {
+        
+            public RequestBodyAndHeaderResolver(List<HttpMessageConverter<?>> converters) {
+                super(converters);
+            }
+        
+            @Override
+            public boolean supportsParameter(MethodParameter parameter) {
+                return parameter.hasParameterAnnotation(RequestBodyAndHeader.class);
+            }
+        
+            @Override
+            public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+                Object result = super.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
+                HashMap<String, String> headerParams = new HashMap<>(10);
+                Iterator<String> headerNames = webRequest.getHeaderNames();
+                headerNames.forEachRemaining(headerName -> headerParams.put(headerName, webRequest.getHeader(headerName)));
+                BeanUtils.populate(result, headerParams);
+                return result;
+            }
+        }
+        ```
     3. 注册解析器：在配置类的 `addArgumentResolvers` 方法中注册解析器
-    > 注意： header 拿到的都是小写，没有驼峰的命名格式。 
+        ```java
+        @Configuration
+        public class WebConfig implements WebMvcConfigurer {
+        
+            @Autowired
+            private RequestBodyAndHeaderResolver resolver;
+        
+            @Override
+            public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+                resolvers.add(resolver);
+            }
+        }
+        ```
 
-
+> 注意： header 大小写不敏感，https://stackoverflow.com/questions/5258977/are-http-headers-case-sensitive。     
+> 参考： https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2    
 > 参考： https://www.cnblogs.com/yuwentims/articles/9721953.html    
 > 参考： https://www.jianshu.com/p/bf59fbf5ccce
