@@ -6,3 +6,5 @@ server:
 logging:
   level:
     root: debug
+
+custom-name: sb1
