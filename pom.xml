@@ -28,6 +28,7 @@
         <module>springbootheader</module>
         <module>springbootclasspath</module>
         <module>springbooterror</module>
+        <module>jsHttp</module>
     </modules>
     <dependencies>
         <dependency>

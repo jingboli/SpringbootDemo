@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录页面-XMLHttpRequest</title>
+</head>
+<body>
+<p>登录页面-XMLHttpRequest</p>
+
+<div id="container">
+    <input type="text" placeholder="用户名" id="username">
+    <input type="text" placeholder="密码" id="password">
+    <button type="button" onclick="login()">登录</button>
+</div>
+<script type="text/javascript">
+    function login() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var result = xmlhttp.responseText;
+                var obj = JSON.parse(result);
+                if (obj.code == 0) {
+                    alert(obj.message);
+                } else {
+                    alert("登录失败原因：" + obj.message);
+                }
+            }
+        }
+        xmlhttp.open("POST", "http://localhost:8087/login", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("username=Bill&password=Gates");
+    }
+</script>
+</body>
+</html>
