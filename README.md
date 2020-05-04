@@ -1,5 +1,5 @@
 # Springboot 知识点
-* [Springboot classPath 指的是哪里](./springbootclasspath/README.md)
+* [Springboot classPath 指的是哪里](./springbootclasspath/README.MD)
 * [Springboot 集成 Redis](./springbootredis/README.md)
 * [Springboot 集成 ActiveMQ](./springbootactivemq/README.md)
 * [Springboot 集成 Mail](./springbootmail/README.md)
