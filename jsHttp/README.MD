@@ -108,11 +108,11 @@
     <html>
     <head>
         <meta charset="utf-8">
-        <title>登录页面-jQuery</title>
+        <title>登录页面-axios</title>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body>
-    <p>登录页面-jQuery</p>
+    <p>登录页面-axios</p>
 
     <div id="container">
         <input type="text" placeholder="用户名" id="username">
