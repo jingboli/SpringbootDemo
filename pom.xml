@@ -26,6 +26,8 @@
         <module>springbootredis</module>
         <module>springbootactivemq</module>
         <module>springbootheader</module>
+        <module>springbootclasspath</module>
+        <module>springbooterror</module>
     </modules>
     <dependencies>
         <dependency>
