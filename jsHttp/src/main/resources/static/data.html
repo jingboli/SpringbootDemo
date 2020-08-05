@@ -1,0 +1,393 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>数据分发操作页面</title>
+    <link rel="stylesheet" type="text/css" href="themes/metro/easyui.css">
+    <link rel="stylesheet" type="text/css" href="themes/mobile.css">
+    <link rel="stylesheet" type="text/css" href="themes/icon.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easyui.mobile.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+<div class="easyui-navpanel">
+    <header>
+        <div class="m-toolbar">
+            <span class="m-title">数据分发页面</span>
+        </div>
+    </header>
+    <ul class="m-list">
+        <li>
+            <div class="m-slide-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="doProduce()" id="do1">1.执行存储过程</a>
+                <input class="easyui-textbox" id="input1" data-options="prompt:'执行结果'">
+            </div>
+        </li>
+        <li>
+            <div class="m-slide-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="doAllExcel()" id="do2">2.生成总 excel</a>
+                <input class="easyui-textbox" id="input2" data-options="prompt:'执行结果'">
+            </div>
+        </li>
+        <li>
+            <div class="m-slide-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="doEmail2Check()" id="do3">3.发送邮件做检查</a>
+                <input class="easyui-textbox" id="input3" data-options="prompt:'执行结果'">
+            </div>
+        </li>
+        <li>
+            <div class="m-slide-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="doOrgExcel()" id="do4">4.生成不同部门
+                    excel</a>
+                <input class="easyui-textbox" id="input4" data-options="prompt:'执行结果'">
+            </div>
+        </li>
+        <li>
+            <div class="m-slide-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="doEmail2Org()" id="do5">5.发送不同部门邮件</a>
+                <input class="easyui-textbox" id="input5" data-options="prompt:'执行结果'">
+            </div>
+        </li>
+        <li>
+            <div class="m-slide-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="doEmail2NoReceiver()" id="do6">6.发送无部门接收人邮件</a>
+                <input class="easyui-textbox" id="input6" data-options="prompt:'执行结果'">
+            </div>
+        </li>
+        <li>
+            <div class="m-slide-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="doExportPicture()" id="do7">7.导出来图片</a>
+                <input class="easyui-textbox" id="input7" data-options="prompt:'执行结果'">
+            </div>
+        </li>
+        <li>
+            <div class="m-slide-left">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="doEmailPicture()" id="do8">8.压缩并发送图片</a>
+                <input class="easyui-textbox" id="input8" data-options="prompt:'执行结果'">
+            </div>
+        </li>
+    </ul>
+
+</div>
+<script>
+    var url1 = "http://localhost:8087/hello1";
+    var url2 = "http://localhost:8087/hello2";
+    var url3 = "http://localhost:8087/hello3";
+    var url4 = "http://localhost:8087/hello4";
+    var url5 = "http://localhost:8087/hello5";
+    var url6 = "http://localhost:8087/hello6";
+    var url7 = "http://localhost:8087/hello7";
+    var url8 = "http://localhost:8087/hello8";
+
+    function doProduce() {
+        $.ajax({
+            url: url1,
+            method: "get",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '网络请求中……',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            }, success: function (result) {
+                try {
+                    // if (status === "success") {
+                    if (result !== null) {
+                        if (result.code === 0) {
+                            $("#input1").textbox('setText', result.message);
+                        } else {
+                            $("#input1").textbox('setText', result.message);
+                        }
+                    } else {
+                        $("#input1").textbox('setText', '请求失败，需要重试');
+                    }
+                    // } else {
+                    //     $("#input1").textbox('setText', '请求失败，需要重试');
+                    // }
+                } catch (e) {
+                    $("#input1").textbox('setText', '异常情况:' + e.toString());
+                }
+            },
+            error: function (xmlHttpRequest) {
+                $("#input1").textbox('setText', '异常情况: statuCode:' + xmlHttpRequest.status + " error: " + xmlHttpRequest.responseText);
+            }
+        });
+    }
+
+    function doAllExcel() {
+        $.ajax({
+            url: url2,
+            method: "get",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '网络请求中……',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            }, success: function (result) {
+                try {
+                    // if (status === "success") {
+                    if (result !== null) {
+                        if (result.code === 0) {
+                            $("#input2").textbox('setText', result.message);
+                        } else {
+                            $("#input2").textbox('setText', result.message);
+                        }
+                    } else {
+                        $("#input2").textbox('setText', '请求失败，需要重试');
+                    }
+                    // } else {
+                    //     $("#input1").textbox('setText', '请求失败，需要重试');
+                    // }
+                } catch (e) {
+                    $("#input2").textbox('setText', '异常情况:' + e.toString());
+                }
+            },
+            error: function (xmlHttpRequest) {
+                $("#input2").textbox('setText', '异常情况: statuCode:' + xmlHttpRequest.status + " error: " + xmlHttpRequest.responseText);
+            }
+        });
+    }
+
+    function doEmail2Check() {
+        $.ajax({
+            url: url3,
+            method: "get",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '网络请求中……',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            }, success: function (result) {
+                try {
+                    // if (status === "success") {
+                    if (result !== null) {
+                        if (result.code === 0) {
+                            $("#input3").textbox('setText', result.message);
+                        } else {
+                            $("#input3").textbox('setText', result.message);
+                        }
+                    } else {
+                        $("#input3").textbox('setText', '请求失败，需要重试');
+                    }
+                    // } else {
+                    //     $("#input1").textbox('setText', '请求失败，需要重试');
+                    // }
+                } catch (e) {
+                    $("#input3").textbox('setText', '异常情况:' + e.toString());
+                }
+            },
+            error: function (xmlHttpRequest) {
+                $("#input3").textbox('setText', '异常情况: statuCode:' + xmlHttpRequest.status + " error: " + xmlHttpRequest.responseText);
+            }
+        });
+    }
+
+    function doOrgExcel() {
+        $.ajax({
+            url: url4,
+            method: "get",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '网络请求中……',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            }, success: function (result) {
+                try {
+                    // if (status === "success") {
+                    if (result !== null) {
+                        if (result.code === 0) {
+                            $("#input4").textbox('setText', result.message);
+                        } else {
+                            $("#input4").textbox('setText', result.message);
+                        }
+                    } else {
+                        $("#input4").textbox('setText', '请求失败，需要重试');
+                    }
+                    // } else {
+                    //     $("#input1").textbox('setText', '请求失败，需要重试');
+                    // }
+                } catch (e) {
+                    $("#input4").textbox('setText', '异常情况:' + e.toString());
+                }
+            },
+            error: function (xmlHttpRequest) {
+                $("#input4").textbox('setText', '异常情况: statuCode:' + xmlHttpRequest.status + " error: " + xmlHttpRequest.responseText);
+            }
+        });
+    }
+
+    function doEmail2Org() {
+        $.ajax({
+            url: url5,
+            method: "get",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '网络请求中……',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            }, success: function (result) {
+                try {
+                    // if (status === "success") {
+                    if (result !== null) {
+                        if (result.code === 0) {
+                            $("#input5").textbox('setText', result.message);
+                        } else {
+                            $("#input5").textbox('setText', result.message);
+                        }
+                    } else {
+                        $("#input5").textbox('setText', '请求失败，需要重试');
+                    }
+                    // } else {
+                    //     $("#input1").textbox('setText', '请求失败，需要重试');
+                    // }
+                } catch (e) {
+                    $("#input5").textbox('setText', '异常情况:' + e.toString());
+                }
+            },
+            error: function (xmlHttpRequest) {
+                $("#input5").textbox('setText', '异常情况: statuCode:' + xmlHttpRequest.status + " error: " + xmlHttpRequest.responseText);
+            }
+        });
+    }
+
+    function doEmail2NoReceiver() {
+        $.ajax({
+            url: url6,
+            method: "get",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '网络请求中……',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            }, success: function (result) {
+                try {
+                    // if (status === "success") {
+                    if (result !== null) {
+                        if (result.code === 0) {
+                            $("#input6").textbox('setText', result.message);
+                        } else {
+                            $("#input6").textbox('setText', result.message);
+                        }
+                    } else {
+                        $("#input6").textbox('setText', '请求失败，需要重试');
+                    }
+                    // } else {
+                    //     $("#input1").textbox('setText', '请求失败，需要重试');
+                    // }
+                } catch (e) {
+                    $("#input6").textbox('setText', '异常情况:' + e.toString());
+                }
+            },
+            error: function (xmlHttpRequest) {
+                $("#input6").textbox('setText', '异常情况: statuCode:' + xmlHttpRequest.status + " error: " + xmlHttpRequest.responseText);
+            }
+        });
+    }
+
+    function doExportPicture() {
+        $.ajax({
+            url: url7,
+            method: "get",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '网络请求中……',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            }, success: function (result) {
+                try {
+                    // if (status === "success") {
+                    if (result !== null) {
+                        if (result.code === 0) {
+                            $("#input7").textbox('setText', result.message);
+                        } else {
+                            $("#input7").textbox('setText', result.message);
+                        }
+                    } else {
+                        $("#input7").textbox('setText', '请求失败，需要重试');
+                    }
+                    // } else {
+                    //     $("#input1").textbox('setText', '请求失败，需要重试');
+                    // }
+                } catch (e) {
+                    $("#input7").textbox('setText', '异常情况:' + e.toString());
+                }
+            },
+            error: function (xmlHttpRequest) {
+                $("#input7").textbox('setText', '异常情况: statuCode:' + xmlHttpRequest.status + " error: " + xmlHttpRequest.responseText);
+            }
+        });
+    }
+
+    function doEmailPicture() {
+        $.ajax({
+            url: url8,
+            method: "get",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '网络请求中……',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            }, success: function (result) {
+                try {
+                    // if (status === "success") {
+                    if (result !== null) {
+                        if (result.code === 0) {
+                            $("#input8").textbox('setText', result.message);
+                        } else {
+                            $("#input8").textbox('setText', result.message);
+                        }
+                    } else {
+                        $("#input8").textbox('setText', '请求失败，需要重试');
+                    }
+                    // } else {
+                    //     $("#input1").textbox('setText', '请求失败，需要重试');
+                    // }
+                } catch (e) {
+                    $("#input8").textbox('setText', '异常情况:' + e.toString());
+                }
+            },
+            error: function (xmlHttpRequest) {
+                $("#input8").textbox('setText', '异常情况: statuCode:' + xmlHttpRequest.status + " error: " + xmlHttpRequest.responseText);
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>
