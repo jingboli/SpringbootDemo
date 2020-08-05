@@ -29,6 +29,7 @@
         <module>springbootclasspath</module>
         <module>springbooterror</module>
         <module>jsHttp</module>
+        <module>nosql-redis</module>
     </modules>
     <dependencies>
         <dependency>
