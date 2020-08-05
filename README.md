@@ -6,6 +6,7 @@
 * [Springboot 获取 Header 的方法](./springbootheader/README.md)
 * [Springboot 错误处理](./springbooterror/README.MD)
 * [JavaScript 网络请求](./jsHttp/README.MD)
+* [Springboot Nosql-redis](./nosal-redis/README.MD)
 
 ## module 端口分配
 | module             | 端口    |
@@ -17,7 +18,7 @@
 | springbootclasspath    | 8085  |
 | springbooterror    | 8086  |
 | jsHttp             | 8087  |
-
+| nosql-redis         | 8088  |
 
 
 > springboot 多 module 参考： https://blog.csdn.net/weixin_39723544/article/details/83058455

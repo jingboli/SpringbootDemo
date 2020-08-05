@@ -1,3 +1,7 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /
 spring:
   redis:
     database: 0
@@ -10,3 +14,4 @@ spring:
         max-idle: 8
         max-wait: -1ms
         min-idle: 0
+
