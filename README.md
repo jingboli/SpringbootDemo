@@ -6,7 +6,7 @@
 * [Springboot 获取 Header 的方法](./springbootheader/README.md)
 * [Springboot 错误处理](./springbooterror/README.MD)
 * [JavaScript 网络请求](./jsHttp/README.MD)
-* [Springboot Nosql-redis](./nosal-redis/README.MD)
+* [Springboot Nosql-redis](./nosql-redis/README.md)
 
 ## module 端口分配
 | module             | 端口    |
