@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/middle_questionnaire?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&autoReconnectForPools=true&&serverTimezone=GMT%2B8
+    username: root
+    password: lijingbo321
+
+# mybatis扫描配置
+mybatis:
+  mapper-locations: classpath:/mapper/*

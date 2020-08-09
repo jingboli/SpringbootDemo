@@ -30,6 +30,7 @@
         <module>springbooterror</module>
         <module>jsHttp</module>
         <module>nosql-redis</module>
+        <module>springbootscheduled</module>
     </modules>
     <dependencies>
         <dependency>
