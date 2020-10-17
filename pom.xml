@@ -31,6 +31,8 @@
         <module>jsHttp</module>
         <module>nosql-redis</module>
         <module>springbootscheduled</module>
+        <module>springbootkafka</module>
+        <module>BloomFilter</module>
     </modules>
     <dependencies>
         <dependency>
